@@ -1,4 +1,3 @@
-const util = require('util');
 let Board = [
   ['-','-','-'],
   ['-','-','-'],
@@ -22,11 +21,13 @@ function processMove(position, player) {
   let piece = player === 1 ? 'X' : 'O'
   if (Board[position.row][position.col] !== '-' || Board[position.row][position.col] === undefined){
     console.log('Invalid move, please try again \n')
+    return false
   } else {
     Board[position.row][position.col] = piece
+    return true
   }
 }
-process.stdin.resume();
+
 process.stdin.setEncoding('utf8');
 
 
@@ -38,11 +39,11 @@ process.stdin.on('data', function (text) {
   position.col = parsedText[2]
 
   if (playerOneTurn) {
-    processMove(position, 1)
-    playerOneTurn = false
+    let changePlayer = processMove(position, 1)
+    if (changePlayer) playerOneTurn = false
   } else {
-    processMove(position, 0)
-    playerOneTurn = true
+    let changePlayer = processMove(position, 0)
+    if (changePlayer) playerOneTurn = true
   }
   printBoard()
   if (text === 'quit\n') {
@@ -52,7 +53,7 @@ process.stdin.on('data', function (text) {
 });
 
 function done() {
-  console.log('Now that process.stdin is paused, there is nothing more to do.');
+  console.log('Thanks for playing!');
   process.exit();
 }
 console.log('please select a position, e.g. 1,2')
