@@ -16,10 +16,21 @@ function printBoard() {
   })
   console.log('-------------')
 }
+function checkRows() {
 
+}
+function checkColumns() {
+
+}
+function checkDiagnols() {
+
+}
+function checkSolution(){
+
+}
 function processMove(position, player) {
   let piece = player === 1 ? 'X' : 'O'
-  if (Board[position.row][position.col] !== '-' || Board[position.row][position.col] === undefined){
+  if (Board[position.row] === undefined || Board[position.row][position.col] === undefined || Board[position.row][position.col] !== '-' ) {
     console.log('Invalid move, please try again \n')
     return false
   } else {
