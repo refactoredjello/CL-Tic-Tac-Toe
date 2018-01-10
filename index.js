@@ -33,7 +33,6 @@ function checkColumns(board) {
       rotatedBoard[j][i] = temp
     }
   }
-  console.log('checking columns:  ', Board )
   return checkRows(rotatedBoard)
 }
 
@@ -52,7 +51,6 @@ function checkDiagnols(board) {
 }
 
 function checkSolution(){
-  console.log('Checking solution: ', checkRows(Board), checkColumns(Board))
   return checkRows(Board) || checkColumns(Board) || checkDiagnols(Board)
 }
 function processMove(position, player) {
@@ -84,7 +82,7 @@ process.stdin.on('data', function (text) {
     if (changePlayer) playerOneTurn = true
   }
   printBoard()
-  console.log(Board)
+  
   let winner = checkSolution()
   if(winner) done(winner)
   if (text === 'quit\n') {
